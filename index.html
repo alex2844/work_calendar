@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Work Calendar</title>
+	<style>body,html.spinner body{visibility:hidden}html:after,.spinner:after{content:'';border-radius:50%;border:4px transparent solid;border-top-color:var(--theme,#3F51B5);animation:spinner 1s infinite}html:after,button.spinner:after{position:fixed}html:after{height:40px;width:40px;left:50%;top:50%;margin:-20px 0 0 -20px}@keyframes spinner{to{transform:rotate(360deg)}}</style>
+	<link rel="preload" href="https://alex2844.github.io/qad-cmf/dist/css/tablet_light.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+	<noscript><link rel="stylesheet" href="https://alex2844.github.io/qad-cmf/dist/css/tablet_light.css" /></noscript>
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+	<link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" /></noscript>
+</head>
+<body>
+	<div class="content">
+		<header>
+			<h1>Work Calendar</h1>
+		</header>
+		<main>
+			<section>
+				<dialog id="alert_dialog">
+					<form method="dialog">
+						<h2>Настройки</h2>
+						<section>
+							<label class="input full">
+								<input type="date" name="startDate" />
+								<span>Стартовая дата (первый рабочий день)</span>
+							</label>
+							<label class="select full">
+								<select name="schedule">
+									<option value="dnww">Д,Н,В,В</option>
+								</select>
+								<span>График</span>
+							</label>
+					</label>
+						</section>
+						<footer>
+							<button type="reset">Reset</button>
+							<button type="submit">Ok</button>
+						</footer>
+					</form>
+				</dialog>
+				<div id="calendar"></div>
+				<div class="fab" id="save" hidden>
+					<button class="material-icons" title="Сохранить в png" onclick="downloadPNG()">image</button>
+					<button class="material-icons" title="Сохранить в ical" onclick="downloadICS()">save</button>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+</html>
+<style>
+#calendar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.calendar-table {
+	margin: 10px;
+}
+.calendar-table th, .calendar-table td {
+	padding: 5px;
+	text-align: center;
+}
+.month-header {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.current-day {
+	font-weight: bold;
+}
+.working-day, .working-night {
+	background-color: lightblue;
+}
+.weekend {
+	color: red;
+}
+</style>
+<script src="https://alex2844.github.io/qad-cmf/dist/js/client.js"></script>
+<script src="./index.js" onload="init()"></script>
